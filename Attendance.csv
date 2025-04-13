@@ -1,0 +1,21 @@
+attendance_id,course_id,student_id,attendance_date,status,remarks
+1,CS101,7001,2024-01-15,Present,On time
+2,CS101,7002,2024-01-15,Present,On time
+3,CS101,7003,2024-01-15,Absent,Sick leave
+4,CS101,7004,2024-01-15,Present,On time
+5,CS101,7005,2024-01-15,Present,On time
+6,CS101,7006,2024-01-15,Present,On time
+7,CS101,7007,2024-01-15,Absent,Family emergency
+8,CS101,7008,2024-01-15,Present,On time
+9,CS101,7009,2024-01-15,Present,On time
+10,CS101,7010,2024-01-15,Present,On time
+11,CS102,7001,2024-01-16,Present,On time
+12,CS102,7002,2024-01-16,Present,On time
+13,CS102,7003,2024-01-16,Present,On time
+14,CS102,7004,2024-01-16,Present,On time
+15,CS102,7005,2024-01-16,Absent,Medical appointment
+16,CS102,7006,2024-01-16,Present,On time
+17,CS102,7007,2024-01-16,Present,On time
+18,CS102,7008,2024-01-16,Present,On time
+19,CS102,7009,2024-01-16,Present,On time
+20,CS102,7010,2024-01-16,Present,On time 

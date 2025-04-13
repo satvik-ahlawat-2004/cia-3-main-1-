@@ -1,0 +1,52 @@
+event_id,student_id,event_name,event_date,event_location,participation_type,achievement
+1,7001,Annual Tech Symposium 2023,2023-01-01,Campus,Participant,Completed
+2,7002,Cultural Fest 2023,2023-02-02,Campus,Participant,
+3,7003,Hackathon 2023,2023-03-03,Campus,Participant,
+4,7004,Sports Meet 2023,2023-04-04,Campus,Participant,Completed
+5,7005,Debate Competition 2023,2023-05-05,Campus,Participant,
+6,7006,Science Exhibition 2023,2023-06-06,Campus,Participant,
+7,7007,Workshop on AI 2023,2023-07-07,Campus,Participant,Completed
+8,7008,Coding Contest 2023,2023-08-08,Campus,Participant,
+9,7009,Alumni Meet 2023,2023-09-09,Campus,Participant,
+10,7010,Industrial Visit 2023,2023-10-10,Campus,Participant,Completed
+11,7001,Annual Tech Symposium 2024,2023-11-11,Campus,Participant,
+12,7002,Cultural Fest 2024,2023-12-12,Campus,Participant,
+13,7003,Hackathon 2024,2023-01-13,Campus,Participant,Completed
+14,7004,Sports Meet 2024,2023-02-14,Campus,Participant,
+15,7005,Debate Competition 2024,2023-03-15,Campus,Participant,
+16,7006,Science Exhibition 2024,2023-04-16,Campus,Participant,Completed
+17,7007,Workshop on AI 2024,2023-05-17,Campus,Participant,
+18,7008,Coding Contest 2024,2023-06-18,Campus,Participant,
+19,7009,Alumni Meet 2024,2023-07-19,Campus,Participant,Completed
+20,7010,Industrial Visit 2024,2023-08-20,Campus,Participant,
+21,7001,Annual Tech Symposium 2025,2023-09-21,Campus,Participant,
+22,7002,Cultural Fest 2025,2023-10-22,Campus,Participant,Completed
+23,7003,Hackathon 2025,2023-11-23,Campus,Participant,
+24,7004,Sports Meet 2025,2023-12-24,Campus,Participant,
+25,7005,Debate Competition 2025,2023-01-25,Campus,Participant,Completed
+26,7006,Science Exhibition 2025,2023-02-26,Campus,Participant,
+27,7007,Workshop on AI 2025,2023-03-27,Campus,Participant,
+28,7008,Coding Contest 2025,2023-04-28,Campus,Participant,Completed
+29,7009,Alumni Meet 2025,2023-05-01,Campus,Participant,
+30,7010,Industrial Visit 2025,2023-06-02,Campus,Participant,
+31,7001,Annual Tech Symposium 2026,2023-07-03,Campus,Participant,Completed
+32,7002,Cultural Fest 2026,2023-08-04,Campus,Participant,
+33,7003,Hackathon 2026,2023-09-05,Campus,Participant,
+34,7004,Sports Meet 2026,2023-10-06,Campus,Participant,Completed
+35,7005,Debate Competition 2026,2023-11-07,Campus,Participant,
+36,7006,Science Exhibition 2026,2023-12-08,Campus,Participant,
+37,7007,Workshop on AI 2026,2023-01-09,Campus,Participant,Completed
+38,7008,Coding Contest 2026,2023-02-10,Campus,Participant,
+39,7009,Alumni Meet 2026,2023-03-11,Campus,Participant,
+40,7010,Industrial Visit 2026,2023-04-12,Campus,Participant,Completed
+41,7001,Annual Tech Symposium 2027,2023-05-13,Campus,Participant,
+42,7002,Cultural Fest 2027,2023-06-14,Campus,Participant,
+43,7003,Hackathon 2027,2023-07-15,Campus,Participant,Completed
+44,7004,Sports Meet 2027,2023-08-16,Campus,Participant,
+45,7005,Debate Competition 2027,2023-09-17,Campus,Participant,
+46,7006,Science Exhibition 2027,2023-10-18,Campus,Participant,Completed
+47,7007,Workshop on AI 2027,2023-11-19,Campus,Participant,
+48,7008,Coding Contest 2027,2023-12-20,Campus,Participant,
+49,7009,Alumni Meet 2027,2023-01-21,Campus,Participant,Completed
+50,7010,Industrial Visit 2027,2023-02-22,Campus,Participant,
+51,7001,24221045,2025-04-13,satvik ahlawat,Volunteer,class 10 

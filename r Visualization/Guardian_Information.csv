@@ -1,0 +1,11 @@
+guardian_id,title,full_name,mobile_number,mail,relationship,address
+1,Mr.,Guardian Reddy,991123450,guardian.reddy@mail.com,Uncle,"Area-1, City-1"
+2,Mr.,Guardian Patel,992123451,guardian.patel@mail.com,Uncle,"Area-2, City-2"
+3,Mr.,Guardian Verma,993123452,guardian.verma@mail.com,Uncle,"Area-3, City-3"
+4,Mr.,Guardian Sharma,994123453,guardian.sharma@mail.com,Uncle,"Area-4, City-4"
+5,Mr.,Guardian Iyer,995123454,guardian.iyer@mail.com,Uncle,"Area-5, City-5"
+6,Mr.,Guardian Mehta,996123455,guardian.mehta@mail.com,Uncle,"Area-6, City-6"
+7,Mr.,Guardian Mishra,997123456,guardian.mishra@mail.com,Uncle,"Area-7, City-7"
+8,Mr.,Guardian Nair,998123457,guardian.nair@mail.com,Uncle,"Area-8, City-8"
+9,Mr.,Guardian Joshi,999123458,guardian.joshi@mail.com,Uncle,"Area-9, City-9"
+10,Mr.,Guardian Das,9910123459,guardian.das@mail.com,Uncle,"Area-10, City-10"

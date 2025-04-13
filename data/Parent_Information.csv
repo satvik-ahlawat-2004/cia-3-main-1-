@@ -1,0 +1,11 @@
+parent_id,father_first_name,father_middle_name,father_last_name,father_contact_number,father_occupation,mother_first_name,mother_middle_name,mother_last_name,mother_contact_number,mother_occupation,family_income,father_id,mother_id,income_id,guardian_id
+1,Ramesh,,Reddy,981563210,Engineer,Lakshmi,,Reddy,971432100,Teacher,10L to 15L,1,1,1,1
+2,Ramesh,,Patel,982563211,Engineer,Lakshmi,,Patel,972432101,Teacher,10L to 15L,2,2,2,2
+3,Ramesh,,Verma,983563212,Engineer,Lakshmi,,Verma,973432102,Teacher,10L to 15L,3,3,3,3
+4,Ramesh,,Sharma,984563213,Engineer,Lakshmi,,Sharma,974432103,Teacher,10L to 15L,4,4,4,4
+5,Ramesh,,Iyer,985563214,Engineer,Lakshmi,,Iyer,975432104,Teacher,10L to 15L,5,5,5,5
+6,Ramesh,,Mehta,986563215,Engineer,Lakshmi,,Mehta,976432105,Teacher,10L to 15L,6,6,6,6
+7,Ramesh,,Mishra,987563216,Engineer,Lakshmi,,Mishra,977432106,Teacher,10L to 15L,7,7,7,7
+8,Ramesh,,Nair,988563217,Engineer,Lakshmi,,Nair,978432107,Teacher,10L to 15L,8,8,8,8
+9,Ramesh,,Joshi,989563218,Engineer,Lakshmi,,Joshi,979432108,Teacher,10L to 15L,9,9,9,9
+10,Ramesh,,Das,9810563219,Engineer,Lakshmi,,Das,9710432109,Teacher,10L to 15L,10,10,10,10

@@ -1,0 +1,11 @@
+student_id,personal_details,academic_details,work_experience,pre_review,admission_id
+7001,Details of Priya Reddy,Academic details for Priya,Interned at Infosys,Active learner,3001
+7002,Details of Amit Patel,Academic details for Amit,Interned at TCS,Quick learner,3002
+7003,Details of Sarah Khan,Academic details for Sarah,Interned at Wipro,Excellent communication,3003
+7004,Details of Raj Kumar,Academic details for Raj,Interned at HCL,Good problem solver,3004
+7005,Details of Anita Singh,Academic details for Anita,Interned at Tech Corp,Team player,3005
+7006,Details of John Doe,Academic details for John,Interned at StartUp Inc,Innovation focused,3006
+7007,Details of Maya Sharma,Academic details for Maya,Interned at IBM,Strong analytical skills,3007
+7008,Details of Alex Chen,Academic details for Alex,Interned at Microsoft,Creative thinker,3008
+7009,Details of Lisa Wang,Academic details for Lisa,Interned at Google,Detail oriented,3009
+7010,Details of Tom Wilson,Academic details for Tom,Interned at Amazon,Fast learner,3010 

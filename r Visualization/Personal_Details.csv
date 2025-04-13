@@ -1,0 +1,11 @@
+personal_id,student_id,contact_number,mail_id,dob,name_id,address_id,parent_id
+1,7001,900000001,priya.reddy@student.edu.in,2004-01-10,1,1,1
+2,7002,900000002,amit.patel@student.edu.in,2004-01-11,2,2,2
+3,7003,900000003,neha.verma@student.edu.in,2004-01-12,3,3,3
+4,7004,900000004,rahul.sharma@student.edu.in,2004-01-13,4,4,4
+5,7005,900000005,sneha.iyer@student.edu.in,2004-01-14,5,5,5
+6,7006,900000006,vikram.mehta@student.edu.in,2004-01-15,6,6,6
+7,7007,900000007,divya.mishra@student.edu.in,2004-01-16,7,7,7
+8,7008,900000008,karan.nair@student.edu.in,2004-01-17,8,8,8
+9,7009,900000009,anjali.joshi@student.edu.in,2004-01-18,9,9,9
+10,7010,9000000010,rohit.das@student.edu.in,2004-01-19,10,10,10

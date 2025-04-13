@@ -1,0 +1,11 @@
+enrollment_id,student_id,course_id,enrollment_date,semester_or_term,status,mode,year_of_passing,payment_status,date_of_payment
+1,7001,1,2023-06-20,Sem 1,Appearing,Regular,,Paid,2023-06-25
+2,7002,2,2023-06-20,Sem 2,Appearing,Regular,,Paid,2023-06-25
+3,7003,3,2023-06-20,Sem 3,Appearing,Regular,,Paid,2023-06-25
+4,7004,4,2023-06-20,Sem 4,Appearing,Regular,,Paid,2023-06-25
+5,7005,5,2023-06-20,Sem 5,Appearing,Regular,,Paid,2023-06-25
+6,7006,6,2023-06-20,Sem 6,Appearing,Regular,,Paid,2023-06-25
+7,7007,7,2023-06-20,Sem 7,Appearing,Regular,,Paid,2023-06-25
+8,7008,8,2023-06-20,Sem 8,Appearing,Regular,,Paid,2023-06-25
+9,7009,9,2023-06-20,Sem 9,Appearing,Regular,,Paid,2023-06-25
+10,7010,10,2023-06-20,Sem 10,Appearing,Regular,,Paid,2023-06-25

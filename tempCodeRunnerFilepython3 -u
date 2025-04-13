@@ -1,0 +1,343 @@
+import streamlit as st
+import pandas as pd
+import os
+from PIL import Image
+from datetime import datetime
+import db_operations as db
+import plotly.express as px
+import plotly.graph_objects as go
+import mysql.connector
+from mysql.connector import Error
+
+# Must be the first Streamlit command
+st.set_page_config(page_title="🎓 Student Support System", layout="wide")
+
+# Display the main title with custom styling
+st.markdown("""
+    <h1 style='text-align: center; color: #1f77b4;'>
+        🎓 Market ke Maharathi
+    </h1>
+    <h2 style='text-align: center; color: #2c3e50;'>
+        Student Support System Dashboard
+    </h2>
+""", unsafe_allow_html=True)
+
+# Display image if it exists
+image_path = "image/dashboard_image.jpg"
+if os.path.exists(image_path):
+    image = Image.open(image_path)
+    st.image(image, use_container_width=True)
+else:
+    st.info("Please add your dashboard image to the 'image' folder as 'dashboard_image.jpg'")
+
+# Get student list from database
+student_df = db.get_student_list()
+
+if not student_df.empty:
+    # Sidebar Navigation
+    section = st.sidebar.radio("📁 Select Section", 
+                             ["Home", "Student Details", "Individual Student Search", 
+                              "Event Information", "➕ Add Event Info"])
+
+    if section == "Home":
+        st.subheader("👋 Welcome to the Student Dashboard")
+        st.write("Use the sidebar to navigate through different student data views.")
+
+    elif section == "Student Details":
+        st.subheader("📋 Student Details")
+        st.dataframe(student_df)
+
+    elif section == "Individual Student Search":
+        st.subheader("🔍 Search Individual Student")
+        
+        # Get list of student IDs
+        student_ids = student_df['student_id'].unique()
+        
+        # Create a selectbox for student IDs
+        selected_student = st.selectbox("Select Student ID", student_ids)
+        
+        if st.button("Show Details"):
+            # Get student details
+            student_info = student_df[student_df['student_id'] == selected_student].iloc[0]
+            
+            # Get student events
+            student_events = db.get_student_events(selected_student)
+            
+            # Create two columns
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.markdown("### 👤 Student Information")
+                st.write(f"**Student ID:** {student_info['student_id']}")
+                st.write(f"**Name:** {student_info['first_name']} {student_info['last_name']}")
+                st.write(f"**Enrollment Number:** {student_info['enrollment_number']}")
+                st.write(f"**Program:** {student_info['program_name']}")
+            
+            with col2:
+                st.markdown("### 📊 Event Participation")
+                st.write(f"**Total Events:** {len(student_events)}")
+                if not student_events.empty:
+                    achievements = student_events['achievement'].dropna()
+                    st.write(f"**Achievements:** {len(achievements)}")
+            
+            # Show student events
+            if not student_events.empty:
+                st.markdown("### 🎭 Student Event Participation")
+                st.dataframe(student_events)
+            else:
+                st.info("No event participation records found for this student")
+        
+    elif section == "Event Information":
+        st.subheader("🎭 Student Event Participation Records")
+        
+        # Get all events
+        events_df = db.get_all_events()
+        
+        if not events_df.empty:
+            # Display event information with filtering options
+            st.markdown("### 🔍 Filter Events")
+            
+            # Get unique student IDs and event names for filtering
+            unique_students = sorted(events_df['student_id'].unique())
+            unique_events = sorted(events_df['event_name'].unique())
+            
+            # Create filters
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                selected_student = st.selectbox("Filter by Student ID", ["All"] + list(unique_students))
+            
+            with col2:
+                selected_event = st.selectbox("Filter by Event Name", ["All"] + list(unique_events))
+            
+            # Apply filters
+            filtered_df = events_df.copy()
+            
+            if selected_student != "All":
+                filtered_df = filtered_df[filtered_df['student_id'] == selected_student]
+            
+            if selected_event != "All":
+                filtered_df = filtered_df[filtered_df['event_name'] == selected_event]
+            
+            # Display filtered data
+            st.dataframe(filtered_df)
+            
+            # Display participation metrics
+            st.markdown("### 📊 Event Participation Metrics")
+            
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                st.metric("Total Events", len(events_df['event_name'].unique()))
+            
+            with col2:
+                st.metric("Total Student Participants", len(events_df['student_id'].unique()))
+            
+            with col3:
+                achievements = events_df['achievement'].dropna()
+                st.metric("Total Achievements", len(achievements))
+        else:
+            st.info("No event information available. Add events using the '➕ Add Event Info' section.")
+        
+    elif section == "➕ Add Event Info":
+        st.subheader("➕ Add New Event Information")
+        
+        # Create form for adding new event info
+        with st.form("add_event_form"):
+            # Get list of student IDs
+            student_ids = student_df['student_id'].unique()
+            
+            # Form fields
+            student_id = st.selectbox("Student ID *", options=student_ids)
+            event_name = st.text_input("Event Name *")
+            event_date = st.date_input("Event Date *", datetime.today())
+            event_location = st.text_input("Event Location")
+            participation_type = st.selectbox(
+                "Participation Type", 
+                ["Participant", "Organizer", "Volunteer", "Speaker", "Presenter", "Attendee", "Other"]
+            )
+            achievement = st.text_input("Achievement (if any)")
+            
+            # Submit button
+            submit_button = st.form_submit_button("Add Event")
+            
+            if submit_button:
+                if not event_name:
+                    st.error("Event Name is required")
+                else:
+                    success, message = db.add_event(
+                        student_id=student_id,
+                        event_name=event_name,
+                        event_date=event_date,
+                        event_location=event_location,
+                        participation_type=participation_type,
+                        achievement=achievement if achievement else None
+                    )
+                    
+                    if success:
+                        st.success(message)
+                    else:
+                        st.error(message)
+
+else:
+    st.error("🚨 Unable to connect to the database. Please check your database configuration.")
+
+# Function to create database connection
+def create_connection():
+    try:
+        connection = mysql.connector.connect(
+            host="localhost",
+            database="StudentInformationSystem",
+            user="root",
+            password=""  # You'll need to set your MySQL password
+        )
+        return connection
+    except Error as e:
+        st.error(f"Error connecting to MySQL Database: {e}")
+        return None
+
+# Main title
+st.title("🎓 Student Information System")
+
+# Sidebar navigation
+page = st.sidebar.selectbox(
+    "Choose a page",
+    ["Dashboard", "Students", "Events", "Analytics"]
+)
+
+if page == "Dashboard":
+    # Dashboard layout with columns
+    col1, col2 = st.columns(2)
+    
+    try:
+        conn = create_connection()
+        if conn is not None:
+            # Total Students
+            with col1:
+                cursor = conn.cursor()
+                cursor.execute("SELECT COUNT(*) FROM Student")
+                total_students = cursor.fetchone()[0]
+                st.metric("Total Students", total_students)
+                
+            # Total Events
+            with col2:
+                cursor.execute("SELECT COUNT(*) FROM EventInfo")
+                total_events = cursor.fetchone()[0]
+                st.metric("Total Events", total_events)
+            
+            # Event Participation Chart
+            st.subheader("Event Participation Overview")
+            cursor.execute("""
+                SELECT e.event_name, COUNT(ep.student_id) as participant_count
+                FROM EventInfo e
+                LEFT JOIN EventParticipation ep ON e.event_id = ep.event_id
+                GROUP BY e.event_id, e.event_name
+                ORDER BY participant_count DESC
+                LIMIT 5
+            """)
+            event_data = pd.DataFrame(cursor.fetchall(), columns=['Event', 'Participants'])
+            
+            fig = px.bar(event_data, x='Event', y='Participants',
+                        title='Top 5 Events by Participation')
+            st.plotly_chart(fig, use_container_width=True)
+            
+            conn.close()
+            
+    except Error as e:
+        st.error(f"Error: {e}")
+
+elif page == "Students":
+    st.header("Student Directory")
+    
+    try:
+        conn = create_connection()
+        if conn is not None:
+            cursor = conn.cursor()
+            cursor.execute("""
+                SELECT s.student_id, s.first_name, s.last_name, 
+                       s.enrollment_number, p.program_name
+                FROM Student s
+                JOIN Program p ON s.program_id = p.program_id
+            """)
+            students = pd.DataFrame(cursor.fetchall(), 
+                                  columns=['ID', 'First Name', 'Last Name', 
+                                         'Enrollment', 'Program'])
+            st.dataframe(students)
+            conn.close()
+            
+    except Error as e:
+        st.error(f"Error: {e}")
+
+elif page == "Events":
+    st.header("Event Management")
+    
+    try:
+        conn = create_connection()
+        if conn is not None:
+            cursor = conn.cursor()
+            cursor.execute("""
+                SELECT event_name, event_type, start_date, end_date, venue
+                FROM EventInfo
+                ORDER BY start_date DESC
+            """)
+            events = pd.DataFrame(cursor.fetchall(), 
+                                columns=['Event Name', 'Type', 'Start Date', 
+                                       'End Date', 'Venue'])
+            st.dataframe(events)
+            
+            # Event Type Distribution
+            st.subheader("Event Type Distribution")
+            fig = px.pie(events, names='Type', title='Distribution of Event Types')
+            st.plotly_chart(fig, use_container_width=True)
+            
+            conn.close()
+            
+    except Error as e:
+        st.error(f"Error: {e}")
+
+elif page == "Analytics":
+    st.header("Analytics Dashboard")
+    
+    try:
+        conn = create_connection()
+        if conn is not None:
+            cursor = conn.cursor()
+            
+            # Student Program Distribution
+            cursor.execute("""
+                SELECT p.program_name, COUNT(s.student_id) as student_count
+                FROM Program p
+                LEFT JOIN Student s ON p.program_id = s.program_id
+                GROUP BY p.program_id, p.program_name
+            """)
+            program_data = pd.DataFrame(cursor.fetchall(), 
+                                      columns=['Program', 'Students'])
+            
+            st.subheader("Students per Program")
+            fig = px.pie(program_data, values='Students', names='Program',
+                        title='Student Distribution Across Programs')
+            st.plotly_chart(fig, use_container_width=True)
+            
+            # Event Participation Trends
+            cursor.execute("""
+                SELECT e.event_type, COUNT(ep.participation_id) as participation_count
+                FROM EventInfo e
+                LEFT JOIN EventParticipation ep ON e.event_id = ep.event_id
+                GROUP BY e.event_type
+            """)
+            participation_data = pd.DataFrame(cursor.fetchall(), 
+                                           columns=['Event Type', 'Participations'])
+            
+            st.subheader("Event Participation by Type")
+            fig = px.bar(participation_data, x='Event Type', y='Participations',
+                        title='Participation Distribution by Event Type')
+            st.plotly_chart(fig, use_container_width=True)
+            
+            conn.close()
+            
+    except Error as e:
+        st.error(f"Error: {e}")
+
+# Footer
+st.markdown("---")
+st.markdown("© 2024 Student Information System. All rights reserved.") 

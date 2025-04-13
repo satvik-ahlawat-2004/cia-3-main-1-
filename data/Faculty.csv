@@ -1,0 +1,4 @@
+faculty_id,first_name,middle_name,last_name,email_id,contact_number,program_id,department_id,joining_date,designation,area_of_specialization,remarks
+1,Anil,,Kumar,anil.kumar@univ.in,9876543001,1,1,2020-06-01,Associate Professor,AI & ML,Experienced in AI projects
+2,Meena,,Rao,meena.rao@univ.in,9876543002,2,2,2021-01-15,Assistant Professor,Finance,Specialist in Taxation
+3,Vikash,,Das,vikash.das@univ.in,9876543003,3,3,2019-08-20,Lecturer,Development Economics,Published researcher
